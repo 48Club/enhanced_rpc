@@ -1,33 +1,41 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Indicator is Ownable {
-    address[] public _validators;
-    mapping(address => bool) public validators;
+contract PuissantIndicator is Ownable {
+    address[] public puissants;
+    mapping(address => bool) public isPuissant;
 
-    function addValidator(address validator) public onlyOwner {
-        validators[validator] = true;
-        for (uint256 index = 0; index < _validators.length; index++) {
-            if (_validators[index] == validator) return;
-        }
-        _validators.push(validator);
+    event PuissantDeployed(address coinbase);
+    event PuissantDisabled(address coinbase);
+
+    function addValidator(address coinbase) external onlyOwner {
+        require(!isPuissant[coinbase], "already exist");
+
+        isPuissant[coinbase] = true;
+        puissants.push(coinbase);
+
+        emit PuissantDeployed(coinbase);
     }
 
-    function removeValidator(address validator) public onlyOwner {
-        validators[validator] = false;
-        for (uint256 index = 0; index < _validators.length; index++) {
-            if (_validators[index] == validator) {
-                _validators[index] = _validators[_validators.length - 1];
-                _validators.pop();
-                return;
+    function removeValidator(address coinbase) external onlyOwner {
+        require(isPuissant[coinbase], "!exist");
+
+        isPuissant[coinbase] = false;
+        for (uint256 index = 0; index < puissants.length; index++) {
+            if (puissants[index] == coinbase) {
+                puissants[index] = puissants[puissants.length - 1];
+                puissants.pop();
+                break;
             }
         }
+
+        emit PuissantDisabled(coinbase);
     }
 
-    function getAllValidators() public view returns (address[] memory) {
-        return _validators;
+    function puissantsLength() external view returns (uint256) {
+        return puissants.length;
     }
 }
