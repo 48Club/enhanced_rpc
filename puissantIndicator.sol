@@ -5,7 +5,7 @@ pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract PuissantIndicator is Ownable {
-    address[] public puissants;
+    address[] puissants;
     mapping(address => bool) public isPuissant;
 
     event PuissantDeployed(address coinbase);
@@ -34,8 +34,8 @@ contract PuissantIndicator is Ownable {
 
         emit PuissantDisabled(coinbase);
     }
-
-    function puissantsLength() external view returns (uint256) {
-        return puissants.length;
+    
+    function getPuissants() external view returns (address[] memory) {
+        return puissants;
     }
 }
