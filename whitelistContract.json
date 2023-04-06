@@ -164,5 +164,6 @@
   "0x6CdeDBeF9eDce1E8E52f2A1A01D043b8998E294f":"Alpaca Alperp ALP Staking Protocol Revenue Rewarder",
   "0x2D4DdBb76CBb2aFf2553A5B4017318fd87586fA4":"Alpaca Alperp ALP Staking ALPACA Emission",
   "0x884339220Ce0a63e9CcEA0bd1a4DB8cb5677F08E":"Alpaca Alperp Reward Distributor",
-  "0xC018C6130F47EE34E50045016E8A92357E1cAD43":"Alpaca Alperp Merkle Airdrop"
+  "0xC018C6130F47EE34E50045016E8A92357E1cAD43":"Alpaca Alperp Merkle Airdrop",
+  "0x5E8466ed06f7Acaa78Ab21b0F5FEc6810afcC199": "Alpaca Alperp PoolRouter04"
 }
