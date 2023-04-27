@@ -165,5 +165,8 @@
   "0x2D4DdBb76CBb2aFf2553A5B4017318fd87586fA4":"Alpaca Alperp ALP Staking ALPACA Emission",
   "0x884339220Ce0a63e9CcEA0bd1a4DB8cb5677F08E":"Alpaca Alperp Reward Distributor",
   "0xC018C6130F47EE34E50045016E8A92357E1cAD43":"Alpaca Alperp Merkle Airdrop",
-  "0x5E8466ed06f7Acaa78Ab21b0F5FEc6810afcC199": "Alpaca Alperp PoolRouter04"
+  "0x5E8466ed06f7Acaa78Ab21b0F5FEc6810afcC199": "Alpaca Alperp PoolRouter04",
+  "0x7389aaf2e32872cABD766D0CEB384220e8F2A590": "Alpaca MoneyMarket Diamond",
+  "0xD20B887654dB8dC476007bdca83d22Fa51e93407": "Alpaca MoneyMarket AccountManager",
+  "0x4579587AE043131999cE3d9C66199726972E3Fb7": "Alpaca MoneyMarket MiniFL"
 }
