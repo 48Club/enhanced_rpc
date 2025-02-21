@@ -4,14 +4,14 @@ import (
 	"testing"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPrintEmbed(t *testing.T) {
-	gasExploiter, sponsorship := GasExploiter(), Sponsorship()
-	assert.Equal(t, len(gasExploiter), 5)
-	assert.Equal(t, gasExploiter[0], common.HexToAddress("0x0000000000004946c0e9f43f4dee607b0ef1fa1c"))
-	assert.Equal(t, len(GasWhitelist()), 182)
-	assert.Equal(t, len(sponsorship), 4)
-	assert.Equal(t, sponsorship[0], common.HexToAddress("0x55d398326f99059fF775485246999027B3197955"))
+func TestSponsorship(t *testing.T) {
+	SponsorshipInit()
+	assert.NotNil(t, _sponsorship)
+	addr := common.HexToAddress("0xabA39a94091f130f1Eb33d2B04022f9154A5715D")
+	data := hexutil.MustDecode("0x3e4e1e27000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000080000000000000000000000000ff5c0d4727e6aebfee41c223d0becadb465871f8000000000000000000000000000000000000000000000000000000000000000bcfaa31141b8c6ad0856638353d29922c1d3af4dab16542186f0f7237f277c457cb4b1dba6e450f0b1994429e2636aa9e8cc34b43caa6fb66a43fd4210aa88dad231e23cff3199cb0f1c5fa38684d345f89c1dbdc213d2ee4a53d0f200a6dd1e4513e8dcda2bf58b16e0056d538a598ec9233f21961558de0ed84bf992cc8a1948bd9cec23d2c99456dc6bc4e23f8c413fa4e0e21866e89e47aa4dc6abb9b1aa23bec5c43e7b714494c7fdae8b39fed8ab69b4fff27f2df604c1699024c7e603f49cd66eeb1f734b95b90ce4ce93b26cca745f09d9f7576b5956a3eca11d344e5e48ef462a489574246d30df5b98cfc0c290285bf594907a176c8bbc6baca97fed8863cda680e4839238e021d2cd845f9f2ba919802480cffe2052c8ca9c34f74b0b80eb20e0faf89d2a473755913d447f04ffed5dc2497096f7de5ba6a6403fe992f95e8b8d603ee09bf4c41bec0204e534eda1053ef6292bc9d8e9d3eda7122")
+	assert.True(t, IsSponsorable(&addr, data))
 }
