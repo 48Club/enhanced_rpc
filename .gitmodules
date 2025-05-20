@@ -1,0 +1,3 @@
+[submodule "ofac-addresses"]
+	path = ofac-addresses
+	url = https://github.com/ultrasoundmoney/ofac-ethereum-addresses

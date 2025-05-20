@@ -1,7 +1,9 @@
 package enhanced_rpc
 
 import (
+	"bytes"
 	_ "embed"
+	"encoding/csv"
 	"encoding/json"
 	"math/big"
 	"sync"
@@ -10,14 +12,17 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
-//go:embed exploiter.json
+//go:embed data/exploiter.json
 var gasExploiter []byte
 
-//go:embed whitelistContract.json
+//go:embed data/whitelistContract.json
 var gasWhitelist []byte
 
-//go:embed sponsorship.json
+//go:embed data/sponsorship.json
 var sponsorship []byte
+
+//go:embed data/data.csv
+var ofacAddresses []byte
 
 func GasWhitelist() (addrs []common.Address) {
 	var _gasWhitelist map[common.Address]string
@@ -81,4 +86,28 @@ func IsSponsorable(a *common.Address, data []byte) (b bool) {
 	}
 
 	return true
+}
+
+func GetOfacAddresses() (res []common.Address) {
+	res = []common.Address{}
+	reader := csv.NewReader(bytes.NewReader(ofacAddresses))
+
+	_, err := reader.Read()
+	if err != nil {
+		panic(err)
+	}
+
+	records, err := reader.ReadAll()
+	if err != nil {
+		panic(err)
+	}
+
+	for _, record := range records {
+		if len(record) > 2 {
+			if addr := common.HexToAddress(record[1]); addr != (common.Address{}) {
+				res = append(res, addr)
+			}
+		}
+	}
+	return
 }
