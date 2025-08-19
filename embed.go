@@ -61,6 +61,7 @@ var (
 )
 
 func IsSponsorable(a *common.Address, data []byte) (b bool) {
+	return false
 	SponsorshipInit()
 
 	if a == nil || len(data) <= 4 { // 格式不匹配
